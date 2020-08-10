@@ -1,4 +1,4 @@
-package com.lambdaschool.crudyorders;
+package com.lambdaschool.modelingorders;
 
 import com.github.javafaker.Faker;
 import com.lambdaschool.crudyorders.models.Agent;
@@ -21,7 +21,7 @@ import java.util.Set;
 
 
 @Transactional
-@Component
+//@Component
 public class SeedData implements CommandLineRunner
 {
     /**
