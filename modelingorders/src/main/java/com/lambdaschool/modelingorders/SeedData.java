@@ -1,24 +1,23 @@
 package com.lambdaschool.modelingorders;
 
+import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 
 import com.lambdaschool.modelingorders.models.Agent;
 import com.lambdaschool.modelingorders.models.Customer;
 import com.lambdaschool.modelingorders.models.Order;
 import com.lambdaschool.modelingorders.models.Payment;
-import com.lambdaschool.modelingorders.repositories.AgentRepository;
-import com.lambdaschool.modelingorders.repositories.CustomerRepository;
-import com.lambdaschool.modelingorders.repositories.OrderRepository;
-import com.lambdaschool.modelingorders.repositories.PaymentRepository;
+import com.lambdaschool.modelingorders.services.AgentServices;
+import com.lambdaschool.modelingorders.services.CustomerServices;
+import com.lambdaschool.modelingorders.services.OrderServices;
+import com.lambdaschool.modelingorders.services.PaymentServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.Locale;
+import java.text.DecimalFormat;
 import java.util.Random;
-import java.util.Set;
 
 
 @Transactional
@@ -29,25 +28,25 @@ public class SeedData implements CommandLineRunner
      * Connects the customer table to this SeedData method
      */
     @Autowired
-    private CustomerRepository custrepos;
+    private CustomerServices custService;
 
     /**
      * Connects the agents table to this SeedData method
      */
     @Autowired
-    private AgentRepository agentrepos;
+    private AgentServices agentService;
 
     /**
      * Connects the orders table to this SeedData method
      */
     @Autowired
-    private OrderRepository ordersrepos;
+    private OrderServices orderService;
 
     /**
      * Connects the payment table to this SeedData method
      */
     @Autowired
-    private PaymentRepository paymentrepos;
+    private PaymentServices paymentService;
 
     /**
      * Generates test, seed data for our application
@@ -67,10 +66,10 @@ public class SeedData implements CommandLineRunner
         Payment pay3 = new Payment("Credit Card");
         Payment pay4 = new Payment("Mobile Pay");
 
-        pay1 = paymentrepos.save(pay1);
-        pay2 = paymentrepos.save(pay2);
-        pay3 = paymentrepos.save(pay3);
-        pay4 = paymentrepos.save(pay4);
+        pay1 = paymentService.save(pay1);
+        pay2 = paymentService.save(pay2);
+        pay3 = paymentService.save(pay3);
+        pay4 = paymentService.save(pay4);
 
         Agent a01 = new Agent("Ramasundar",
             "Bangalore",
@@ -482,56 +481,81 @@ public class SeedData implements CommandLineRunner
             "SOD");
         o12.getPayments().add(pay1);
 
-        agentrepos.save(a01);
-        agentrepos.save(a02);
-        agentrepos.save(a03);
-        agentrepos.save(a04);
-        agentrepos.save(a05);
-        agentrepos.save(a06);
-        agentrepos.save(a07);
-        agentrepos.save(a08);
-        agentrepos.save(a09);
-        agentrepos.save(a10);
-        agentrepos.save(a11);
-        agentrepos.save(a12);
+        agentService.save(a01);
+        agentService.save(a02);
+        agentService.save(a03);
+        agentService.save(a04);
+        agentService.save(a05);
+        agentService.save(a06);
+        agentService.save(a07);
+        agentService.save(a08);
+        agentService.save(a09);
+        agentService.save(a10);
+        agentService.save(a11);
+        agentService.save(a12);
 
-        custrepos.save(c01);
-        custrepos.save(c02);
-        custrepos.save(c03);
-        custrepos.save(c04);
-        custrepos.save(c05);
-        custrepos.save(c06);
-        custrepos.save(c07);
-        custrepos.save(c08);
-        custrepos.save(c09);
-        custrepos.save(c10);
-        custrepos.save(c11);
-        custrepos.save(c12);
-        custrepos.save(c13);
-        custrepos.save(c14);
-        custrepos.save(c15);
-        custrepos.save(c16);
-        custrepos.save(c17);
-        custrepos.save(c18);
-        custrepos.save(c19);
-        custrepos.save(c20);
-        custrepos.save(c21);
-        custrepos.save(c22);
-        custrepos.save(c23);
-        custrepos.save(c24);
-        custrepos.save(c25);
+        custService.save(c01);
+        custService.save(c02);
+        custService.save(c03);
+        custService.save(c04);
+        custService.save(c05);
+        custService.save(c06);
+        custService.save(c07);
+        custService.save(c08);
+        custService.save(c09);
+        custService.save(c10);
+        custService.save(c11);
+        custService.save(c12);
+        custService.save(c13);
+        custService.save(c14);
+        custService.save(c15);
+        custService.save(c16);
+        custService.save(c17);
+        custService.save(c18);
+        custService.save(c19);
+        custService.save(c20);
+        custService.save(c21);
+        custService.save(c22);
+        custService.save(c23);
+        custService.save(c24);
+        custService.save(c25);
 
-        ordersrepos.save(o01);
-        ordersrepos.save(o02);
-        ordersrepos.save(o03);
-        ordersrepos.save(o04);
-        ordersrepos.save(o05);
-        ordersrepos.save(o06);
-        ordersrepos.save(o07);
-        ordersrepos.save(o08);
-        ordersrepos.save(o09);
-        ordersrepos.save(o10);
-        ordersrepos.save(o11);
-        ordersrepos.save(o12);
+        orderService.save(o01);
+        orderService.save(o02);
+        orderService.save(o03);
+        orderService.save(o04);
+        orderService.save(o05);
+        orderService.save(o06);
+        orderService.save(o07);
+        orderService.save(o08);
+        orderService.save(o09);
+        orderService.save(o10);
+        orderService.save(o11);
+        orderService.save(o12);
+
+        Faker fake = new Faker();
+
+        Random rand = new Random();
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        for (int i = 1; i < 100; i++)
+        {
+            Address address = fake.address();
+
+            Customer fakeCust = new Customer(
+                fake.name().firstName(),
+                address.city(),
+                address.state(),
+                address.country(),
+                Integer.toString(rand.nextInt(3) + 1),
+                Double.parseDouble(df.format((rand.nextInt(15) + 1) * 1000)),
+                Double.parseDouble(df.format((rand.nextInt(15) + 1) * 1000)),
+                Double.parseDouble(df.format((rand.nextInt(15) + 1) * 1000)),
+                Double.parseDouble(df.format((rand.nextInt(15) + 1) * 1000)),
+                fake.phoneNumber().phoneNumber(),
+                a10);
+
+            custService.save(fakeCust);
+        }
     }
 }

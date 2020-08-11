@@ -17,6 +17,6 @@ public class AgentServicesImpl implements AgentServices
     @Override
     public Agent save(Agent agent)
     {
-        return null;
+        return agentrepo.save(agent);
     }
 }
